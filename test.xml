@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ubl:Invoice 
+xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" 
+xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" 
+xmlns:cur="urn:oasis:names:specification:ubl:schema:xsd:CurrencyCode-2" 
+xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" 
+xmlns:ubl="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+	<cbc:CustomizationID>1.0</cbc:CustomizationID>
+	<cbc:ProfileID>Order2Cash</cbc:ProfileID>
+	<cbc:ID>123456</cbc:ID>
+	<!-- document/invoice number -->
+	<cbc:IssueDate>2020-01-01</cbc:IssueDate>
+	<!-- document/invoice date -->
+	<cbc:InvoiceTypeCode>invoice</cbc:InvoiceTypeCode>
+	<!-- invoice/creditnote -->
+	<cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+	<cac:AccountingSupplierParty>
+		<!-- Sender/supplier -->	
+		<cac:Party>
+			<cac:PartyName>
+				<cbc:Name>Supplier X</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+				<cbc:Postbox>12345</cbc:Postbox>
+				<cbc:StreetName>street 1</cbc:StreetName>
+				<cbc:CityName>City</cbc:CityName>
+				<cbc:PostalZone>1234 BB</cbc:PostalZone>
+				<cac:Country>
+					<cbc:IdentificationCode>NL</cbc:IdentificationCode>
+					<!-- 2-letter country code ISO 3166-2 / http://en.wikipedia.org/wiki/ISO_3166-2 -->
+				</cac:Country>
+			</cac:PostalAddress>
+		</cac:Party>
+	</cac:AccountingSupplierParty>
+	<cac:AccountingCustomerParty>
+		<!-- Receiver/customer -->	
+		<cbc:SupplierAssignedAccountID>CUSTOMER_Y</cbc:SupplierAssignedAccountID>
+		<!-- debtor/customer number -->	
+		<cac:Party>
+			<cac:PartyName>
+				<cbc:Name>Customer Y</cbc:Name>
+				<!-- debtor/customer name -->	
+			</cac:PartyName>
+			<cac:Language>
+				<cbc:ID>nl</cbc:ID>
+				<!-- 2-letter language code ISO 639-1 -->
+			</cac:Language>
+			<cac:PostalAddress>
+				<cbc:Postbox>12345</cbc:Postbox>
+				<cbc:StreetName>street 1</cbc:StreetName>
+				<cbc:CityName>City</cbc:CityName>
+				<cbc:PostalZone>1234 BB</cbc:PostalZone>
+				<cac:Country>
+					<cbc:IdentificationCode>NL</cbc:IdentificationCode>
+					<!-- 2-letter country code ISO 3166-2 / http://en.wikipedia.org/wiki/ISO_3166-2 -->
+				</cac:Country>
+			</cac:PostalAddress>
+			<cac:Contact>
+				<cbc:ElectronicMail>info@customery.com</cbc:ElectronicMail>
+			</cac:Contact>
+		</cac:Party>
+	</cac:AccountingCustomerParty>
+	<cac:PaymentMeans>	
+		<cbc:PaymentMeansCode>42</cbc:PaymentMeansCode>
+		<!-- UN/ECE 4461 code list, use 1 for online payment link / http://www.unece.org/trade/untdid/d07a/tred/tred5305.htm -->
+		<cbc:PaymentDueDate>2015-01-31</cbc:PaymentDueDate>
+		<!-- Payment due date -->
+		<cbc:PaymentChannelCode>IBAN</cbc:PaymentChannelCode>
+	</cac:PaymentMeans>
+	<cac:TaxTotal>
+		<cbc:TaxAmount currencyID="EUR">11.56</cbc:TaxAmount>
+		<cac:TaxSubtotal>
+			<cbc:TaxAmount currencyID="EUR">11.56</cbc:TaxAmount>
+			<cbc:Percent>21.0</cbc:Percent>
+			<!-- UN/ECE 5303 code list --> 
+			<cac:TaxCategory>
+				<cac:TaxScheme>
+					<cbc:ID>VAT</cbc:ID>
+				</cac:TaxScheme>
+			</cac:TaxCategory>
+		</cac:TaxSubtotal>
+	</cac:TaxTotal>
+	<cac:LegalMonetaryTotal>
+		<cbc:LineExtensionAmount currencyID="EUR">55.06</cbc:LineExtensionAmount>
+		<!-- Sum of all invoiceline/LineExtensionAmount -->
+		<cbc:TaxExclusiveAmount currencyID="EUR">55.06</cbc:TaxExclusiveAmount>
+		<!-- LegalMonetaryTotal/LineExtensionAmount + LegalMonetaryTotal/ChargeTotalAmount - LegalMonetaryTotal/AllowanceTotalAmount -->
+		<cbc:TaxInclusiveAmount currencyID="EUR">66.62</cbc:TaxInclusiveAmount>
+		<!-- LegalMonetaryTotal/TaxExclusiveAmount + Invoice/TaxTotal/TaxAmount-->
+		<!-- The monetary amount including taxes; the sum of payable amount and prepaid amount -->
+		<cbc:PayableAmount currencyID="EUR">66.62</cbc:PayableAmount>
+		<!-- LegalMonetaryTotal/TaxInclusiveAmount - LegalMonetaryTotal/PrepaidAmount -->	
+	</cac:LegalMonetaryTotal>
+	<cac:InvoiceLine>
+		<cbc:ID>1</cbc:ID>
+		<cbc:InvoicedQuantity>7</cbc:InvoicedQuantity>
+		<cbc:LineExtensionAmount currencyID="EUR">55.06</cbc:LineExtensionAmount>
+		<cac:Item>
+			<cbc:Description>Article A long description</cbc:Description>
+		</cac:Item>
+	</cac:InvoiceLine>
+</ubl:Invoice>

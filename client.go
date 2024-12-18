@@ -324,7 +324,6 @@ func (c *Client) Do(req *http.Request, body interface{}) (*http.Response, error)
 		// header: SOAPHeader{},
 		Body: body,
 	}
-
 	soapError := SOAPError{Response: httpResp}
 	errResp := &ResponseEnvelope{
 		Header: SOAPHeader{},
@@ -346,6 +345,12 @@ func (c *Client) Do(req *http.Request, body interface{}) (*http.Response, error)
 	err = c.Unmarshal(parts[0], soapResponse, errResp, faultResp, statusResp)
 	if err != nil {
 		return httpResp, err
+	}
+
+	if e, ok := soapResponse.Body.(error); ok {
+		if e.Error() != "" {
+			return httpResp, e
+		}
 	}
 
 	if soapError.Error() != "" {

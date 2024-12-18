@@ -120,9 +120,13 @@ func (r *GetListSendersRequest) NewResponseBody() *GetListSendersResponseBody {
 }
 
 type GetListSendersResponseBody struct {
-	XMLName       xml.Name `xml:"ns5:CheckDocumentProcessingStatusResponse"`
-	NumberOfFiles int      `xml:"ns5:numberOfFiles,attr"`
-	Result        string   `xml:"ns5:result,attr"`
+	XMLName                               xml.Name `xml:"Body"`
+	CheckDocumentProcessingStatusResponse struct {
+		XMLName       xml.Name `xml:"CheckDocumentProcessingStatusResponse"`
+		NumberOfFiles int      `xml:"numberOfFiles,attr"`
+		Result        string   `xml:"result,attr"`
+		Message       string   `xml:"Message"`
+	}
 }
 
 func (r *GetListSendersRequest) URL() *url.URL {

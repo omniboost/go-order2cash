@@ -122,16 +122,13 @@ func (r *GetListDocumentsRequest) NewResponseBody() *GetListDocumentsResponseBod
 }
 
 type GetListDocumentsResponseBody struct {
-	XMLName xml.Name `xml:"ns:ListDocumentsResponse"`
-
-	SenderID               string `xml:"ns:senderId,attr"`
-	DocumentId             string `xml:"ns:documentId,attr"`
-	DocumentNumber         string `xml:"ns:documentNumber,attr"`
-	DocumentDateStart      string `xml:"ns:documentDateStart,attr"`
-	DocumentDateEnd        string `xml:"ns:documentDateEnd,attr"`
-	ViewStatus             string `xml:"ns:viewStatus,attr"`
-	DownloadStatus         string `xml:"ns:downloadStatus,attr"`
-	InvoiceDebitCreditCode string `xml:"ns:invoiceDebitCreditCode,attr"`
+	XMLName               xml.Name `xml:"Body"`
+	ListDocumentsResponse struct {
+		XMLName       xml.Name `xml:"ListDocumentsResponse"`
+		NumberOfFiles int      `xml:"numberOfFiles,attr"`
+		Result        string   `xml:"result,attr"`
+		Message       string   `xml:"Message"`
+	}
 }
 
 func (r *GetListDocumentsRequest) URL() *url.URL {
@@ -160,10 +157,11 @@ func (r *GetListDocumentsRequest) Do() (GetListDocumentsResponseBody, error) {
 }
 
 type ListDocumentsRequest struct {
-	SenderID          string `xml:"ns:senderId,attr"`
-	DocumentNumber    string `xml:"ns:documentNumber,attr"`
-	DocumentDateStart string `xml:"ns:documentDateStart,attr"`
-	DocumentDateEnd   string `xml:"ns:documentDateEnd,attr"`
-	ViewStatus        string `xml:"ns:viewStatus,attr"`
-	DownloadStatus    string `xml:"ns:downloadStatus,attr"`
+	XMLName           xml.Name `xml:"ns:ListDocumentsRequest"`
+	SenderID          string   `xml:"ns:senderId,attr"`
+	DocumentNumber    string   `xml:"ns:documentNumber,attr"`
+	DocumentDateStart string   `xml:"ns:documentDateStart,attr"`
+	DocumentDateEnd   string   `xml:"ns:documentDateEnd,attr"`
+	ViewStatus        string   `xml:"ns:viewStatus,attr"`
+	DownloadStatus    string   `xml:"ns:downloadStatus,attr"`
 }

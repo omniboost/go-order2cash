@@ -13,11 +13,11 @@ func TestGetListDocumentsRequest(t *testing.T) {
 
 	req := client.NewGetListDocumentsRequest()
 	req.RequestBody().ListDocumentsRequest.SenderID = "bastionairport"
-	req.RequestBody().ListDocumentsRequest.DocumentNumber = "?"
-	req.RequestBody().ListDocumentsRequest.DocumentDateStart = "?"
-	req.RequestBody().ListDocumentsRequest.DocumentDateEnd = "?"
-	req.RequestBody().ListDocumentsRequest.ViewStatus = "?"
-	req.RequestBody().ListDocumentsRequest.DownloadStatus = "?"
+	req.RequestBody().ListDocumentsRequest.DocumentNumber = "test"
+	req.RequestBody().ListDocumentsRequest.DocumentDateStart = ""
+	req.RequestBody().ListDocumentsRequest.DocumentDateEnd = ""
+	req.RequestBody().ListDocumentsRequest.ViewStatus = ""
+	req.RequestBody().ListDocumentsRequest.DownloadStatus = ""
 	// req.Parameters.PartnerCode = client.PartnerCode()
 	// req.Parameters.HotelCode = client.HotelCode()
 	// req.Parameters.PartnerToken = client.PartnerToken()

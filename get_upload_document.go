@@ -122,8 +122,21 @@ func (r *GetUploadDocumentRequest) NewResponseBody() *GetUploadDocumentResponseB
 }
 
 type GetUploadDocumentResponseBody struct {
-	XMLName       xml.Name `xml:"UploadDocumentResponse"`
-	NumberOfFiles int      `xml:"numberOfFiles,attr"`
+	XMLName                xml.Name `xml:"Body"`
+	UploadDocumentResponse struct {
+		XMLName       xml.Name `xml:"UploadDocumentResponse"`
+		NumberOfFiles int      `xml:"numberOfFiles,attr"`
+		Result        string   `xml:"result,attr"`
+		Message       string   `xml:"Message"`
+		Xmlns         string   `xml:"xmlns,attr"`
+	}
+}
+
+func (r *GetUploadDocumentResponseBody) Error() string {
+	if r.UploadDocumentResponse.Result == "error" {
+		return r.UploadDocumentResponse.Message
+	}
+	return ""
 }
 
 func (r *GetUploadDocumentRequest) URL() *url.URL {
@@ -152,9 +165,9 @@ func (r *GetUploadDocumentRequest) Do() (GetUploadDocumentResponseBody, error) {
 }
 
 type UploadDocumentRequest struct {
-	XMLName        xml.Name `xml:"ns:UploadDocumentRequest"`
-	SenderID       string   `xml:"ns:senderId,attr"`
-	Guid           string   `xml:"ns:guid,attr"`
-	XmlFile        string   `xml:"ns:XmlFile"`
-	AttachmentFile []string `xml:"ns:AttachmentFile"`
+	XMLName        xml.Name       `xml:"ns:UploadDocumentRequest"`
+	SenderID       string         `xml:"ns:senderId,attr"`
+	Guid           string         `xml:"ns:guid,attr"`
+	XmlFile        Base64Binary   `xml:"ns:XmlFile"`
+	AttachmentFile []Base64Binary `xml:"ns:AttachmentFile"`
 }
