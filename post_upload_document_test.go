@@ -9,7 +9,7 @@ import (
 	"github.com/omniboost/go-order2cash"
 )
 
-func TestGetUploadDocumentRequest(t *testing.T) {
+func TestPostUploadDocumentRequest(t *testing.T) {
 	// base := order2cash.Base64Binary("test")
 	// x, _ := xml.MarshalIndent(base, "", "  ")
 	// log.Fatal(string(x))
@@ -20,10 +20,10 @@ func TestGetUploadDocumentRequest(t *testing.T) {
 		t.Fatalf("Failed to read file: %v", err)
 	}
 
-	req := client.NewGetUploadDocumentRequest()
+	req := client.NewPostUploadDocumentRequest()
 	req.RequestBody().UploadDocumentRequest.SenderID = "bastionairport"
-	req.RequestBody().UploadDocumentRequest.Guid = "test"
-	req.RequestBody().UploadDocumentRequest.XmlFile = order2cash.Base64Binary(fileContent)
+	req.RequestBody().UploadDocumentRequest.GUID = "test"
+	req.RequestBody().UploadDocumentRequest.XMLFile = order2cash.Base64Binary(fileContent)
 	// req.RequestBody().UploadDocumentRequest.AttachmentFile = ""
 	resp, err := req.Do()
 	if err != nil {
