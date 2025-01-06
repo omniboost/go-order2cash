@@ -169,5 +169,5 @@ type UploadDocumentRequest struct {
 	SenderID       string         `xml:"ns:senderId,attr"`
 	GUID           string         `xml:"ns:guid,attr"`
 	XMLFile        Base64Binary   `xml:"ns:XmlFile"`
-	AttachmentFile []Base64Binary `xml:"ns:AttachmentFile"`
+	AttachmentFile []Base64Binary `xml:"ns:AttachmentFile,omitempty"`
 }
