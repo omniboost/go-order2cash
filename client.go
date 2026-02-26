@@ -18,6 +18,7 @@ import (
 	"text/template"
 
 	"github.com/elliotchance/pie/v2"
+	"github.com/omniboost/go-httperr"
 	"github.com/pkg/errors"
 )
 
@@ -271,7 +272,7 @@ func (c *Client) Do(req *http.Request, body interface{}) (*http.Response, error)
 	// check if the response isn't an error
 	err = CheckResponse(httpResp)
 	if err != nil {
-		return httpResp, err
+		return httpResp, &httperr.Error{StatusCode: httpResp.StatusCode, Err: err}
 	}
 
 	// check the provided interface parameter
