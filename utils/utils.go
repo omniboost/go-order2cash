@@ -11,7 +11,6 @@ import (
 	null "gopkg.in/guregu/null.v3"
 
 	"github.com/gorilla/schema"
-	"github.com/omniboost/go-unit4-multivers/odata"
 )
 
 var (
@@ -86,13 +85,6 @@ func AddURLValuesToRequest(params url.Values, req *http.Request, skipEmpty bool)
 
 func NewSchemaEncoder() *schema.Encoder {
 	encoder := schema.NewEncoder()
-
-	encoder.RegisterEncoder(&odata.Expand{}, EncodeSchemaMarshaler)
-	encoder.RegisterEncoder(&odata.Filter{}, EncodeSchemaMarshaler)
-	encoder.RegisterEncoder(&odata.Select{}, EncodeSchemaMarshaler)
-	encoder.RegisterEncoder(&odata.Top{}, EncodeSchemaMarshaler)
-	encoder.RegisterEncoder(&odata.OrderBy{}, EncodeSchemaMarshaler)
-	encoder.RegisterEncoder(&odata.Skip{}, EncodeSchemaMarshaler)
 
 	encodeNullFloat := func(v reflect.Value) string {
 		nullFloat, _ := v.Interface().(null.Float)

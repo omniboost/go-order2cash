@@ -1,20 +1,16 @@
 module github.com/omniboost/go-order2cash
 
-go 1.22.0
-
-toolchain go1.22.1
+go 1.25.3
 
 require (
+	github.com/cydev/zero v0.0.0-20160322155811-4a4535dd56e7
+	github.com/elliotchance/pie/v2 v2.9.1
 	github.com/gorilla/schema v0.0.0-20171211162101-9fa3b6af65dc
-	github.com/omniboost/go-unit4-multivers v0.0.0-20200928111357-29606eb52519
+	github.com/omniboost/go-httperr v0.0.0-20251103155253-030b17131c87
 	github.com/pkg/errors v0.9.1
 	gopkg.in/guregu/null.v3 v3.5.0
 )
 
-require (
-	github.com/cydev/zero v0.0.0-20160322155811-4a4535dd56e7 // indirect
-	github.com/elliotchance/pie/v2 v2.9.1 // indirect
-	golang.org/x/exp v0.0.0-20241210194714-1829a127f884 // indirect
-)
+require golang.org/x/exp v0.0.0-20260218203240-3dfff04db8fa // indirect
 
 replace github.com/gorilla/schema => github.com/omniboost/schema v1.1.1-0.20211111150515-2e872025e306
